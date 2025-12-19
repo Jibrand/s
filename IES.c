@@ -107,3 +107,30 @@ int main()
     }
 }
 
+#include <avr/io.h>
+
+int main()
+{
+    unsigned char count = 0;
+
+    DDRD = 0x0F;
+    DDRC = 0x00;
+
+    while (1)
+    {
+        if (PINC == 0x20)
+        {
+            if (count < 9)
+                count++;
+            PORTD = count;
+        }
+        else if (PINC == 0x10)
+        {
+            if (count > 0)
+                count--;
+            PORTD = count;
+        }
+    }
+}
+
+
